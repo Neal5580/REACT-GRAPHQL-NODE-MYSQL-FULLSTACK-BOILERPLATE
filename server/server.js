@@ -5,6 +5,7 @@ const express = require("express");
 const expressJwt = require("express-jwt");
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
+
 const db = require("./models/db");
 const seed = require("./models/seed/seed-db");
 
@@ -30,6 +31,7 @@ const graphqlServer = new ApolloServer({
     typeDefs,
     resolvers,
     context: ({ req }) =>
+        req.user &&
         db.User.findById(req.user.sub).then(user => {
             return { user: user };
         })
