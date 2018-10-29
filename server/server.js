@@ -30,28 +30,28 @@ app.use(
 const graphqlServer = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }) =>
-        req.user &&
-        db.User.findById(req.user.sub).then(user => {
-            return { user: user };
-        })
+    context: async ({ req }) =>
+        req.user && {
+            user: await db.User.findById(req.user.sub)
+        }
 });
 graphqlServer.applyMiddleware({ app });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
     const { email, password } = req.body;
-    db.User.findOne({
+
+    const user = await db.User.findOne({
         where: {
             email: email
         }
-    }).then(user => {
-        if (!(user && user.password === password)) {
-            res.sendStatus(401);
-            return;
-        }
-        const token = jwt.sign({ sub: user.id }, jwtSecret);
-        res.send({ token });
     });
+
+    if (!(user && user.password === password)) {
+        res.sendStatus(401);
+        return;
+    }
+    const token = jwt.sign({ sub: user.id }, jwtSecret);
+    res.send({ token });
 });
 
 db.sequelize

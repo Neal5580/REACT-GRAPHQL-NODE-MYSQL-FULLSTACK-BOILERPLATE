@@ -1,37 +1,19 @@
 const db = require("./models/db");
 
 const Query = {
-    job: (root, { id }) => {
-        return db.Job.findById(id)
-            .then(job => {
-                return job;
-            })
-            .catch(error => {
-                throw new Error("Not Found");
-            });
+    job: async (root, { id }) => {
+        return await db.Job.findById(id);
     },
-    jobs: () => {
-        return db.Job.findAll()
-            .then(jobs => {
-                return jobs;
-            })
-            .catch(error => {
-                throw new Error("Not Found");
-            });
+    jobs: async () => {
+        return await db.Job.findAll();
     },
-    company: (root, { id }) => {
-        return db.Company.findById(id)
-            .then(company => {
-                return company;
-            })
-            .catch(error => {
-                throw new Error("Not Found");
-            });
+    company: async (root, { id }) => {
+        return await db.Company.findById(id);
     }
 };
 
 const Mutation = {
-    createJob: (root, { input }, { user }) => {
+    createJob: async (root, { input }, { user }) => {
         //if user is not logged in
         if (!user) {
             throw new Error("Unauthorized");
@@ -42,38 +24,26 @@ const Mutation = {
             throw new Error("Unauthorized");
         }
 
-        return db.Job.create({ CompanyId: user.CompanyId, ...input }).then(
-            result => {
-                console.log("123");
-                console.log(result.dataValues);
-
-                return result.dataValues;
-            }
-        );
+        return await db.Job.create({
+            CompanyId: user.CompanyId,
+            ...input
+        });
     }
 };
 
 const Job = {
     company: job => {
-        return db.Company.findById(job.CompanyId)
-            .then(job => {
-                return job;
-            })
-            .catch(error => {
-                throw new Error("Not Found");
-            });
+        return db.Company.findById(job.CompanyId);
     }
 };
 
 const Company = {
-    jobs: company => {
-        return db.Job.findAll()
-            .then(jobs => {
-                return jobs.filter(job => job.CompanyId === company.id);
-            })
-            .catch(error => {
-                throw new Error("Not Found");
-            });
+    jobs: async company => {
+        return await db.Job.findAll({
+            where: {
+                CompanyId: company.id
+            }
+        });
     }
 };
 
