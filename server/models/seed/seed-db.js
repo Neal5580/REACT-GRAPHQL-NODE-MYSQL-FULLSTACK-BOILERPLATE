@@ -6,17 +6,10 @@ const _JOBS = require("./jobs.json");
 const _COMPANYS = require("./companies.json");
 
 module.exports = {
-    insert: () => {
-        models.Company.bulkCreate(_COMPANYS)
-            .then(() => {
-                models.Job.bulkCreate(_JOBS).then(() => {
-                    models.User.bulkCreate(_USERS).then(() => {
-                        console.log("Bulk Insert Success!");
-                    });
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+    insert: async () => {
+        await models.Company.bulkCreate(_COMPANYS);
+        await models.Job.bulkCreate(_JOBS);
+        await models.User.bulkCreate(_USERS);
+        console.log("Bulk Insert Success!");
     }
 };
