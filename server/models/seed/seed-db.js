@@ -7,9 +7,11 @@ const _COMPANYS = require("./companies.json");
 
 module.exports = {
     insert: async () => {
-        await models.Company.bulkCreate(_COMPANYS);
-        await models.Job.bulkCreate(_JOBS);
-        await models.User.bulkCreate(_USERS);
+        await Promise.all([
+            models.Company.bulkCreate(_COMPANYS),
+            models.Job.bulkCreate(_JOBS),
+            models.User.bulkCreate(_USERS)
+        ]);
         console.log("Bulk Insert Success!");
     }
 };
