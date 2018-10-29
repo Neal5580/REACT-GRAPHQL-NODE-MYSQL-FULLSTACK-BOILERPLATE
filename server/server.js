@@ -5,7 +5,8 @@ const express = require("express");
 const expressJwt = require("express-jwt");
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
-const db = require("./db");
+const db = require("./models/db");
+const seed = require("./models/seed/seed-db");
 
 const port = 9000;
 const jwtSecret = Buffer.from("Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt", "base64");
@@ -28,21 +29,36 @@ app.use(
 const graphqlServer = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }) => ({
-        user: req.user && db.users.get(req.user.sub)
-    })
+    context: ({ req }) =>
+        db.User.findById(req.user.sub).then(user => {
+            return { user: user };
+        })
 });
 graphqlServer.applyMiddleware({ app });
 
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
-    const user = db.users.list().find(user => user.email === email);
-    if (!(user && user.password === password)) {
-        res.sendStatus(401);
-        return;
-    }
-    const token = jwt.sign({ sub: user.id }, jwtSecret);
-    res.send({ token });
+    db.User.findOne({
+        where: {
+            email: email
+        }
+    }).then(user => {
+        if (!(user && user.password === password)) {
+            res.sendStatus(401);
+            return;
+        }
+        const token = jwt.sign({ sub: user.id }, jwtSecret);
+        res.send({ token });
+    });
 });
 
-app.listen(port, () => console.info(`Server started on port ${port}`));
+db.sequelize
+    .sync({
+        force: true
+    })
+    .then(() => {
+        seed.insert();
+    })
+    .then(() => {
+        app.listen(port, () => console.info(`Server started on port ${port}`));
+    });

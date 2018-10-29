@@ -1,9 +1,33 @@
-const db = require("./db");
+const db = require("./models/db");
 
 const Query = {
-    job: (root, { id }) => db.jobs.get(id),
-    jobs: () => db.jobs.list(),
-    company: (root, { id }) => db.companies.get(id)
+    job: (root, { id }) => {
+        return db.Job.findById(id)
+            .then(job => {
+                return job;
+            })
+            .catch(error => {
+                throw new Error("Not Found");
+            });
+    },
+    jobs: () => {
+        return db.Job.findAll()
+            .then(jobs => {
+                return jobs;
+            })
+            .catch(error => {
+                throw new Error("Not Found");
+            });
+    },
+    company: (root, { id }) => {
+        return db.Company.findById(id)
+            .then(company => {
+                return company;
+            })
+            .catch(error => {
+                throw new Error("Not Found");
+            });
+    }
 };
 
 const Mutation = {
@@ -17,19 +41,40 @@ const Mutation = {
         if (user.role !== "admin") {
             throw new Error("Unauthorized");
         }
-        console.log(user.role);
 
-        const id = db.jobs.create({ companyId: user.companyId, ...input });
-        return db.jobs.get(id);
+        return db.Job.create({ CompanyId: user.CompanyId, ...input }).then(
+            result => {
+                console.log("123");
+                console.log(result.dataValues);
+
+                return result.dataValues;
+            }
+        );
     }
 };
 
 const Job = {
-    company: job => db.companies.get(job.companyId)
+    company: job => {
+        return db.Company.findById(job.CompanyId)
+            .then(job => {
+                return job;
+            })
+            .catch(error => {
+                throw new Error("Not Found");
+            });
+    }
 };
 
 const Company = {
-    jobs: company => db.jobs.list().filter(job => job.companyId === company.id)
+    jobs: company => {
+        return db.Job.findAll()
+            .then(jobs => {
+                return jobs.filter(job => job.CompanyId === company.id);
+            })
+            .catch(error => {
+                throw new Error("Not Found");
+            });
+    }
 };
 
 module.exports = { Query, Mutation, Job, Company };
