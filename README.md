@@ -8,11 +8,14 @@ Project Features:
 REACT <=> REACT APOLLO <=> APOLLO CLIENT <=> EXPRESS <=> GRAPHQL <=> APOLLO_SERVER <=> SEQUELIZE <=> MYSQL
 
 How to start project?
-    Server:
+
+1. Server: 
         Site: localhost:9000
         Command: npm start
-    Client:
+    
+2. Client:
         Site: localhost:3000
         Command: npm start
-    GraphQL:
+    
+3. GraphQL:
         localhost:9000/graphql
