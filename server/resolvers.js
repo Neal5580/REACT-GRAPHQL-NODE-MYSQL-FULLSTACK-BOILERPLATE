@@ -1,8 +1,15 @@
 const db = require("./models/db");
+const { AuthenticationError } = require("apollo-server-express");
 
 const Query = {
     job: async (root, { id }) => {
-        return await db.Job.findById(id);
+        try {
+            return await db.Job.findById(id);
+        } catch (e) {
+            console.log("123");
+
+            throw new Error("Error");
+        }
     },
     jobs: async () => {
         return await db.Job.findAll();
@@ -16,12 +23,12 @@ const Mutation = {
     createJob: async (root, { input }, { user }) => {
         //if user is not logged in
         if (!user) {
-            throw new Error("Unauthorized");
+            throw new AuthenticationError("Unauthorized");
         }
 
         //if user does not have "admin" permission
         if (user.role !== "admin") {
-            throw new Error("Unauthorized");
+            throw new AuthenticationError("Unauthorized");
         }
 
         return await db.Job.create({

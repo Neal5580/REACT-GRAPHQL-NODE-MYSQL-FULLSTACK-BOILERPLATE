@@ -1,0 +1,4 @@
+client/node_modules/
+server/node_modules/
+client_react_apollo/node_modules/
+npm-debug.log*
