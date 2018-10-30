@@ -3,7 +3,7 @@
     "email": "alice@facegle.io",
     "password": "alice123",
     "CompanyId": 1,
-    "role": "123"
+    "role": "admin"
   },
   {
     "email": "bob@goobook.co",

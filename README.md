@@ -1,11 +1,11 @@
 PROJECT PROTOTYPE 
 
-Project Feature:
+Project Features:
 1. GraphQL with Apollo
 2. Sequelize ORM with MySql on Node.js
 3. User authentication and authorization
 
-REACT <=> APOLLO CLIENT <=> EXPRESS <=> GRAPHQL <=> APOLLO_SERVER <=> SEQUELIZE <=> MYSQL
+REACT <=> REACT APOLLO <=> APOLLO CLIENT <=> EXPRESS <=> GRAPHQL <=> APOLLO_SERVER <=> SEQUELIZE <=> MYSQL
 
 How to start project?
     Server:

@@ -6,9 +6,7 @@ const Query = {
         try {
             return await db.Job.findById(id);
         } catch (e) {
-            console.log("123");
-
-            throw new Error("Error");
+            //throw new ValidationError("Error");
         }
     },
     jobs: async () => {
