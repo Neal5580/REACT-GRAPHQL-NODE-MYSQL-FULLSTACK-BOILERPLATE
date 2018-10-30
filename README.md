@@ -1,7 +1,7 @@
-PROJECT PROTOTYPE 
+PROJECT STARTUP KIT 
 
 Project Features:
-1. GraphQL with Apollo
+1. GraphQL with Apollo Client & Server
 2. Sequelize ORM with MySql on Node.js
 3. User authentication and authorization
 
