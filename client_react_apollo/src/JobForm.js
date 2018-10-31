@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { createJob } from "./requests";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -12,20 +11,6 @@ export class JobForm extends Component {
     handleChange(event) {
         const { name, value } = event.target;
         this.setState({ [name]: value });
-    }
-
-    handleClick(event) {
-        event.preventDefault();
-        const { title, description } = this.state;
-        createJob({ title, description })
-            .then(job => {
-                console.log(job);
-
-                this.props.history.push(`/jobs/${job.id}`);
-            })
-            .catch(res => {
-                console.log(res);
-            });
     }
 
     render() {
@@ -111,6 +96,7 @@ export class JobForm extends Component {
         );
     }
 }
+
 const jobDetailFragment = gql`
     fragment JobDetail on Job {
         id
@@ -122,6 +108,7 @@ const jobDetailFragment = gql`
         description
     }
 `;
+
 const createJobMutation = gql`
     mutation CreateJob($input: CreateJobInput) {
         job: createJob(input: $input) {
@@ -130,6 +117,7 @@ const createJobMutation = gql`
     }
     ${jobDetailFragment}
 `;
+
 const jobQuery = gql`
     query JobQuery($id: ID!) {
         job(id: $id) {

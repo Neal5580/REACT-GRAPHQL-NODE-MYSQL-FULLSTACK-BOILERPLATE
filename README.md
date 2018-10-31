@@ -1,18 +1,21 @@
-PROJECT PROTOTYPE 
+PROJECT STARTUP KIT 
 
-Project Feature:
-1. GraphQL with Apollo
+Project Features:
+1. GraphQL with Apollo Client & Server
 2. Sequelize ORM with MySql on Node.js
 3. User authentication and authorization
 
-REACT <=> APOLLO CLIENT <=> EXPRESS <=> GRAPHQL <=> APOLLO_SERVER <=> SEQUELIZE <=> MYSQL
+REACT <=> REACT APOLLO <=> APOLLO CLIENT <=> EXPRESS <=> GRAPHQL <=> APOLLO_SERVER <=> SEQUELIZE <=> MYSQL
 
 How to start project?
-    Server:
+
+1. Server: 
         Site: localhost:9000
         Command: npm start
-    Client:
+    
+2. Client:
         Site: localhost:3000
         Command: npm start
-    GraphQL:
+    
+3. GraphQL:
         localhost:9000/graphql
