@@ -27,15 +27,19 @@ export class JobForm extends Component {
                                 description: description
                             }
                         }}
-                        update={(cache, { job }) => {
+                        update={(cache, { data }) => {
+                            const { job } = data;
+
+                            console.log(job.id);
+
                             cache.writeQuery({
                                 query: jobQuery,
                                 variables: { id: job.id },
-                                job
+                                data
                             });
                         }}
                     >
-                        {(createJob, { data }) => (
+                        {(createJob, { loading, error }) => (
                             <form
                                 onSubmit={e => {
                                     e.preventDefault();
@@ -88,6 +92,8 @@ export class JobForm extends Component {
                                         </button>
                                     </div>
                                 </div>
+                                {loading && <p>Loading...</p>}
+                                {error && <p>Error :( Please try again</p>}
                             </form>
                         )}
                     </Mutation>

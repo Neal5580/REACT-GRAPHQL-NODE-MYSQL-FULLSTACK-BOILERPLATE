@@ -9,7 +9,7 @@ export class JobBoard extends Component {
             <div>
                 <h1 className="title">Job Board</h1>
                 <ul className="box">
-                    <Query query={jobsQuery}>
+                    <Query query={jobsQuery} fetchPolicy="no-cache">
                         {({ loading, data, fetchMore }) => {
                             if (loading) return "loading...";
                             const { jobs } = data;

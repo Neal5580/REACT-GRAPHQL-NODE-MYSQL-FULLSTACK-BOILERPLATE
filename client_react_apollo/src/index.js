@@ -20,7 +20,6 @@ const client = new ApolloClient({
         }
     },
     cache: new InMemoryCache(),
-
     clientState: {
         defaults: {},
         resolvers: {}
@@ -33,5 +32,3 @@ ReactDOM.render(
     </ApolloProvider>,
     document.getElementById("root")
 );
-
-//ReactDOM.render(<App />, document.getElementById('root'));
