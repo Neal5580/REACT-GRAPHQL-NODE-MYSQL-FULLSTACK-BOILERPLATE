@@ -28,14 +28,24 @@ export class JobForm extends Component {
                             }
                         }}
                         update={(cache, { data }) => {
-                            const { job } = data;
-
-                            console.log(job.id);
-
+                            /*
                             cache.writeQuery({
                                 query: jobQuery,
-                                variables: { id: job.id },
+                                variables: { id: data.job.id },
                                 data
+                            });
+                            */
+
+                            const new_job_list = cache.readQuery({
+                                query: jobsQuery
+                            });
+
+                            new_job_list.jobs.push(data.job);
+
+                            // Write our data back to the cache.
+                            cache.writeQuery({
+                                query: jobsQuery,
+                                data: new_job_list
                             });
                         }}
                     >
@@ -131,4 +141,17 @@ const jobQuery = gql`
         }
     }
     ${jobDetailFragment}
+`;
+
+const jobsQuery = gql`
+    query JobsQuery {
+        jobs {
+            id
+            title
+            company {
+                id
+                name
+            }
+        }
+    }
 `;
