@@ -1,13 +1,12 @@
-const { ApolloServer, gql } = require("apollo-server-express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const express = require("express");
-const expressJwt = require("express-jwt");
-const fs = require("fs");
-const jwt = require("jsonwebtoken");
-
-const db = require("./models/db");
-const seed = require("./models/seed/seed-db");
+import { ApolloServer, gql } from "apollo-server-express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import express from "express";
+import expressJwt from "express-jwt";
+import fs from "fs";
+import jwt from "jsonwebtoken";
+import db from "./models/db";
+import seed from "./models/seed/seed-db";
 
 const port = 9000;
 const jwtSecret = Buffer.from("Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt", "base64");
