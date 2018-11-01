@@ -3,18 +3,14 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import expressJwt from "express-jwt";
-import fs from "fs";
 import jwt from "jsonwebtoken";
 import db from "./models/db";
 import seed from "./models/seed/seed-db";
+import resolvers from "./resolvers";
+import schema from "./schema";
 
 const port = 9000;
 const jwtSecret = Buffer.from("Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt", "base64");
-
-const typeDefs = gql(
-    fs.readFileSync("./schema.graphql", { encoding: "utf-8" })
-);
-import resolvers from "./resolvers";
 
 const app = express();
 app.use(
@@ -27,7 +23,7 @@ app.use(
 );
 
 const graphqlServer = new ApolloServer({
-    typeDefs,
+    typeDefs: schema,
     resolvers,
     context: async ({ req }) =>
         req.user && {

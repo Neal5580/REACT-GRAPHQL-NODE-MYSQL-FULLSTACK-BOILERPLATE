@@ -6,6 +6,7 @@ export default {
             return await db.Company.findById(id);
         }
     },
+
     Company: {
         jobs: async company => {
             return await db.Job.findAll({
