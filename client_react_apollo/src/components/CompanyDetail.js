@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { JobList } from "./JobList";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import { companyQuery } from "../data/query";
 
 export class CompanyDetail extends Component {
     render() {
@@ -29,17 +29,3 @@ export class CompanyDetail extends Component {
         );
     }
 }
-
-const companyQuery = gql`
-    query CompanyQuery($id: ID!) {
-        company(id: $id) {
-            id
-            name
-            description
-            jobs {
-                id
-                title
-            }
-        }
-    }
-`;

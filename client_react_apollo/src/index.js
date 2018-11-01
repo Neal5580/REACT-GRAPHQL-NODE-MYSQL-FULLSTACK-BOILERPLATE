@@ -1,10 +1,10 @@
 import "bulma/css/bulma.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import { App } from "./App";
+import { App } from "./components/App";
 import { ApolloProvider, Query } from "react-apollo";
 import { InMemoryCache } from "apollo-boost";
-import { getAccessToken, isLoggedIn } from "./auth";
+import { getAccessToken, isLoggedIn } from "./auth/auth";
 import ApolloClient from "apollo-boost";
 
 const client = new ApolloClient({

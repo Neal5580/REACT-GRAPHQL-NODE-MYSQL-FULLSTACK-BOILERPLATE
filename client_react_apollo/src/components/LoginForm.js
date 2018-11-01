@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { login } from "./auth";
+import { login } from "../auth/auth";
 
 export class LoginForm extends Component {
     constructor(props) {
