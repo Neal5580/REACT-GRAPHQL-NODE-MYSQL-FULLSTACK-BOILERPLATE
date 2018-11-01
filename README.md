@@ -1,4 +1,4 @@
-PROJECT STARTUP KIT 
+FULLSTACK PROJECT BOILERPLATE
 
 Project Features:
 1. GraphQL with Apollo Client & Server
