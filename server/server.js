@@ -14,7 +14,7 @@ const jwtSecret = Buffer.from("Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt", "base64");
 const typeDefs = gql(
     fs.readFileSync("./schema.graphql", { encoding: "utf-8" })
 );
-const resolvers = require("./resolvers");
+import resolvers from "./resolvers";
 
 const app = express();
 app.use(

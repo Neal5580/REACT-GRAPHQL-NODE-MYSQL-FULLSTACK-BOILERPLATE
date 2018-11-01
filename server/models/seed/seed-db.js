@@ -1,11 +1,11 @@
 "use strict";
 
-const models = require("../db");
-const _USERS = require("./users.json");
-const _JOBS = require("./jobs.json");
-const _COMPANYS = require("./companies.json");
+import models from "../db";
+import _USERS from "./users.json";
+import _JOBS from "./jobs.json";
+import _COMPANYS from "./companies.json";
 
-module.exports = {
+export default {
     insert: async () => {
         await Promise.all([
             models.Company.bulkCreate(_COMPANYS),
