@@ -3,7 +3,8 @@ FULLSTACK PROJECT BOILERPLATE
 Project Features:
 1. GraphQL with Apollo Client & Server
 2. Sequelize ORM with MySql on Node.js
-3. User authentication and authorization
+3. User Authentication and Authorization
+4. File Upload with Authorization
 
 REACT <=> REACT APOLLO <=> APOLLO CLIENT <=> EXPRESS <=> GRAPHQL <=> APOLLO_SERVER <=> SEQUELIZE <=> MYSQL
 

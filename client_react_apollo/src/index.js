@@ -5,25 +5,27 @@ import { App } from "./components/App";
 import { ApolloProvider, Query } from "react-apollo";
 import { InMemoryCache } from "apollo-boost";
 import { getAccessToken, isLoggedIn } from "./auth/auth";
-import ApolloClient from "apollo-boost";
+import { ApolloClient } from "apollo-client";
+import { createUploadLink } from "apollo-upload-client";
+import { setContext } from "apollo-link-context";
+
+const authLink = setContext((_, { headers }) => {
+    return {
+        headers: {
+            ...headers,
+            authorization: isLoggedIn() ? `Bearer ${getAccessToken()}` : ""
+        }
+    };
+});
 
 const client = new ApolloClient({
-    uri: "http://localhost:9000/graphql",
-    request: async operation => {
-        if (isLoggedIn()) {
-            const token = await localStorage.getItem("token");
-            operation.setContext({
-                headers: {
-                    authorization: "Bearer " + getAccessToken()
-                }
-            });
-        }
-    },
     cache: new InMemoryCache(),
-    clientState: {
-        defaults: {},
-        resolvers: {}
-    }
+    link: authLink.concat(
+        createUploadLink({
+            uri: "http://localhost:9000/graphql",
+            cretentials: "include"
+        })
+    )
 });
 
 ReactDOM.render(

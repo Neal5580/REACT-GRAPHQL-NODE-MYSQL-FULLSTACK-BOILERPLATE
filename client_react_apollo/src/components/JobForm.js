@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Query, Mutation } from "react-apollo";
 import { jobsQuery } from "../data/query";
 import { createJobMutation } from "../data/mutation";
-
+import UploadFile from "./UploadFile";
 export class JobForm extends Component {
     constructor(props) {
         super(props);
@@ -108,6 +108,7 @@ export class JobForm extends Component {
                             </form>
                         )}
                     </Mutation>
+                    <UploadFile />
                 </div>
             </div>
         );
