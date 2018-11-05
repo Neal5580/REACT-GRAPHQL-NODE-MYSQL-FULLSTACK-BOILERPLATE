@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "apollo-server-express": "^2.1.0",
+    "aws-sdk": "^2.348.0",
     "body-parser": "1.18.2",
     "cors": "2.8.4",
     "express": "4.16.3",
@@ -16,7 +17,8 @@
     "jsonwebtoken": "8.2.0",
     "mysql2": "^1.6.1",
     "notarealdb": "0.2.2",
-    "sequelize": "^4.41.0"
+    "sequelize": "^4.41.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
