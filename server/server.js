@@ -4,8 +4,7 @@ import cors from "cors";
 import express from "express";
 import expressJwt from "express-jwt";
 import jwt from "jsonwebtoken";
-import db from "./models/db";
-import seed from "./models/seed/seed-db";
+import db from "./models";
 import resolvers from "./resolvers";
 import schema from "./schema";
 
@@ -50,12 +49,11 @@ app.post("/login", async (req, res) => {
 });
 
 db.sequelize
-    .sync({
-        force: true
-    })
+    .authenticate()
     .then(() => {
-        seed.insert();
-    })
-    .then(() => {
+        console.log("MySql Connection has been established successfully.");
         app.listen(port, () => console.info(`Server started on port ${port}`));
+    })
+    .catch(err => {
+        console.error("Unable to connect to the database:", err);
     });
