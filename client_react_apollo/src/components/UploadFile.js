@@ -9,22 +9,26 @@ export default class UploadFile extends Component {
         return (
             <div>
                 <Mutation mutation={UPLOAD_FILE}>
-                    {uploadFile => (
-                        <input
-                            type="file"
-                            required
-                            onChange={({
-                                target: {
-                                    validity,
-                                    files: [file]
-                                }
-                            }) => {
-                                console.log("123");
-                                console.log(file);
+                    {(uploadFile, { loading, error }) => (
+                        <div>
+                            <input
+                                type="file"
+                                required
+                                onChange={({
+                                    target: {
+                                        validity,
+                                        files: [file]
+                                    }
+                                }) => {
+                                    console.log("123");
+                                    console.log(file);
 
-                                uploadFile({ variables: { file } });
-                            }}
-                        />
+                                    uploadFile({ variables: { file } });
+                                }}
+                            />
+                            {loading && <p>Loading...</p>}
+                            {error && <p>Error :( Please try again</p>}
+                        </div>
                     )}
                 </Mutation>
             </div>

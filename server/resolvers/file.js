@@ -4,7 +4,16 @@ import { AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID } from "../keys";
 
 export default {
     Mutation: {
-        async uploadFile(parent, { file }) {
+        async uploadFile(parent, { file }, { user }) {
+            //if user is not logged in
+            if (!user) {
+                throw new AuthenticationError("Unauthorized");
+            }
+
+            //if user does not have "admin" permission
+            if (user.role !== "admin") {
+                throw new AuthenticationError("Unauthorized");
+            }
             console.log("Mutation:uploadFile");
             const { stream, filename, mimetype, encoding } = await file;
 
