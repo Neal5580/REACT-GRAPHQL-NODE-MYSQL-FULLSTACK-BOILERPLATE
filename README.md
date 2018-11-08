@@ -16,7 +16,7 @@
 * APOLLO_SERVER 
 * SEQUELIZE 
 * MYSQL  
-* Node 10.13.0 LTS
+* NODE 10.13.0 LTS
 
 ## How do I start? ##
 * Server:  
