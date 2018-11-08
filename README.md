@@ -1,6 +1,6 @@
-# FULLSTACK PROJECT BOILERPLATE #
+# REACT GRAPHQL NODE MYSQL FULLSTACK BOILERPLATE #
 
-## Project Features ##
+## Boilerplate Features ##
 * GraphQL with Apollo Client & Server
 * Sequelize ORM with MySql on Node.js
 * User Authentication and Authorization
