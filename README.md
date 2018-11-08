@@ -9,38 +9,45 @@
 
 ## Technology Stacks ##
 * REACT 
-* REACT APOLLO 
-* APOLLO CLIENT 
+* REACT_APOLLO 
+* APOLLO_CLIENT 
 * EXPRESS 
 * GRAPHQL 
 * APOLLO_SERVER 
 * SEQUELIZE 
 * MYSQL  
+* Node 10.13.0 LTS
 
 ## How do I start? ##
 
 * Server:  
     * Site: localhost:9000
-    * Command: npm start
+    * Command: $ npm start
     
 * Client:
     * Site: localhost:3000
-    * Command: npm start
+    * Command: $ npm start
     
 * GraphQL:
     * localhost:9000/graphql
 
 * Start Both: 
-    * docker-compose up --build
+    * $ docker-compose up --build
 
-## Useful example commands for sequelize-cli ##
+## Useful sequelize-cli commands ##
 
-* node_modules/.bin/sequelize init
+* $ node_modules/.bin/sequelize init
 
-* node_modules/.bin/sequelize db:migrate
+* $ node_modules/.bin/sequelize db:migrate
 
-* node_modules/.bin/sequelize model:generate --name company --attributes name:string,description:text
+* $ node_modules/.bin/sequelize model:generate --name company --attributes name:string,description:text
 
-* node_modules/.bin/sequelize db:seed:all
+* $ node_modules/.bin/sequelize db:seed:all
 
-* node_modules/.bin/sequelize seed:generate --name user
+* $ node_modules/.bin/sequelize seed:generate --name user
+
+## Useful docker commands ##
+* $ docker build -f Dockerfile.dev .
+* $ docker run -p 3000:3000 nealshen/server
+* $ docker-composer up --build
+* $ docker exec -it nealshen/server sh
