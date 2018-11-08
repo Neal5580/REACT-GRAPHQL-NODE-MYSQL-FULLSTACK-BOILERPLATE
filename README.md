@@ -17,6 +17,7 @@
 * SEQUELIZE 
 * MYSQL  
 * NODE 10.13.0 LTS
+* DOCKER
 
 ## How do I start? ##
 * Server:  
