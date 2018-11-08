@@ -7,10 +7,17 @@
 * File Upload with Authorization to S3 Bucket
 * Docker container
 
-## Technology Stack ##
-REACT <=> REACT APOLLO <=> APOLLO CLIENT <=> EXPRESS <=> GRAPHQL <=> APOLLO_SERVER <=> SEQUELIZE <=> MYSQL
+## Technology Stacks ##
+* REACT 
+* REACT APOLLO 
+* APOLLO CLIENT 
+* EXPRESS 
+* GRAPHQL 
+* APOLLO_SERVER 
+* SEQUELIZE 
+* MYSQL  
 
-## How to start project? ##
+## How do I start? ##
 
 * Server:  
     * Site: localhost:9000
