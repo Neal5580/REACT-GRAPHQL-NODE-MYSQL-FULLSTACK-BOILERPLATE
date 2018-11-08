@@ -1,4 +1,4 @@
-# REACT GRAPHQL NODE MYSQL FULLSTACK BOILERPLATE #
+# REACT-GRAPHQL-NODE-MYSQL FULLSTACK BOILERPLATE #
 
 ## Boilerplate Features ##
 * GraphQL with Apollo Client & Server
