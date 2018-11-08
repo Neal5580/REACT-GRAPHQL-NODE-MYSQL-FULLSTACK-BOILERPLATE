@@ -19,31 +19,22 @@
 * Node 10.13.0 LTS
 
 ## How do I start? ##
-
 * Server:  
     * Site: localhost:9000
     * Command: $ npm start
-    
 * Client:
     * Site: localhost:3000
     * Command: $ npm start
-    
 * GraphQL:
     * localhost:9000/graphql
-
 * Start Both: 
     * $ docker-compose up --build
 
 ## Useful sequelize-cli commands ##
-
 * $ node_modules/.bin/sequelize init
-
 * $ node_modules/.bin/sequelize db:migrate
-
 * $ node_modules/.bin/sequelize model:generate --name company --attributes name:string,description:text
-
 * $ node_modules/.bin/sequelize db:seed:all
-
 * $ node_modules/.bin/sequelize seed:generate --name user
 
 ## Useful docker commands ##
