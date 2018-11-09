@@ -4,7 +4,7 @@
 * GraphQL with Apollo Client & Server
 * Sequelize ORM with MySql on Node.js
 * User Authentication and Authorization
-* File Upload with Authorization to S3 Bucket
+* File Upload with Authorization to AWS S3 Bucket
 * Docker container
 
 ## Technology Stacks ##
