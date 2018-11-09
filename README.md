@@ -37,7 +37,8 @@
 * $ node_modules/.bin/sequelize model:generate --name company --attributes name:string,description:text
 * $ node_modules/.bin/sequelize db:seed:all
 * $ node_modules/.bin/sequelize seed:generate --name user
-
+* $ node_modules/.bin/sequelize migration:generate --name add-associations
+  
 ## Useful docker commands ##
 * $ docker build -f Dockerfile.dev .
 * $ docker run -p 3000:3000 nealshen/server
